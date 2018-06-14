@@ -22,8 +22,7 @@ Para una completa definición del producto entrevistamos a Valentina smith, Tran
 
  Aqui presentaremos una muestra en papel de lo que se asemeja según nosotras a los requerimientos de nuestra cliente. Los valores dados en las gráficas no son reales, solo están ahi para dar una idea de como se verá en un futuro. 
 
-<img src="/home/laboratoria134/PROYECTOS  Laboratoria/scl-2018-05-bc-core-pm-datadashboard/sketch.jpg" alt="sketch"/>
-
+<img src="/home/laboratoria134/PROYECTOS  Laboratoria/scl-2018-05-bc-core-pm-datadashboard/sketch.jpg"  height="400" alt="sketch"/>
 
 
 ### Prototipo de alta fidelidad (FIGMA)
