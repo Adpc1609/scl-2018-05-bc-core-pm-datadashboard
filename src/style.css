@@ -1,0 +1,13 @@
+.encabezado{
+    background-color: #FF009E;
+    color: black;
+    font-family: 'Open Sans';
+    height: 40px;
+    font-size: 30px;
+    text-align: center;    
+}
+#navbarDropdown{
+    border-radius: 4%;
+    border-color: black;
+    color: black;
+}
