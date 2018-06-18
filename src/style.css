@@ -16,7 +16,12 @@ background-color: whitesmoke;
     font-weight: bold;
     font-size: 30px;
     color: black;
-
+}
+#Laboratoria{
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
 }
 #boxContenedor{
     width: 100%;
@@ -25,7 +30,7 @@ background-color: whitesmoke;
    
 }
 #boxMapa{
-    background-image: url(mapa2.jpg);
+    background-image: url(America\ BlancoNegro.jpeg);
     width: 50%;
     height: 100%;
     background-repeat: no-repeat;
@@ -34,8 +39,8 @@ background-color: whitesmoke;
     
 }
 .table{
-    width: 50%;
-    height: 100%;
+    width: 25%;
+    height: 80%;
     float: left;
 }
 .letra{
