@@ -29,6 +29,7 @@ describe('data', () => {
 
       processed.forEach(user => {
         assert.ok(user.hasOwnProperty('stats'));
+        assert.isAtLeast(user.stats.percent, 0)
         assert.isNumber(user.stats.percent);
         assert.isObject(user.stats.exercises);
         assert.isObject(user.stats.quizzes);
