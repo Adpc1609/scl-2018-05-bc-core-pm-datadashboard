@@ -1,7 +1,9 @@
 function cargarDatosLima(){
     const url = "../data/cohorts.json"
+    console.log(url)
     fetch(url).then(  //Then recibe una función llamada cuando recibimos una respuesta. Entrega ''promesas''
         (response)=>{
+            console.log(response);
             if(response.ok){
                 return response.json();
             }
@@ -20,6 +22,7 @@ function cargarDatosLima(){
             console.log("Petición falló, no tenemos gatitos por hoy");
         }
     ); 
+}
 
     /*Promise.all([   //Ejecuta todas las llamadas de manera paralela
         fetch(url1),
@@ -39,4 +42,31 @@ function cargarDatosLima(){
         (error)=>{ // Al menos una llamada falló
         }
     );*/
+
+window.loadData = {
+    getCampuses: (url) => {
+        let options = {
+            method: 'GET',
+            headers: {
+                "Accept": "application/json"
+            },
+            // mode: 'cors'
+        };
+
+         return fetch(url, options)
+         .then(response => {
+            if (response.ok) {
+              return response.json()
+            }
+            return Promise.reject(Error('error'))
+          })
+         
+        .catch(error => {
+            return Promise.reject(Error(error.message))
+        });
+
+    }, 
+    getCohortsByIid: (id) =>{
+        console.log(id);
+    }
 }
