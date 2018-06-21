@@ -8,6 +8,19 @@
     text-align: center;    
 }
 
+<<<<<<< HEAD
+=======
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu .dropdown-menu {
+    top:0;
+    left:100%;
+} 
+#navbarSupportedContent{
+background-color: whitesmoke;
+}
+>>>>>>> 1fa0cbb064e4bc702e77bcd4383ee2c348a6f721
 #navbarDropdown{
     background-color: white;
     font-family: 'Open Sans';
@@ -51,6 +64,7 @@
     font-size: 30px;
 }
 
+<<<<<<< HEAD
 .col-12 {
     width: 8,3333333333%;
   }
@@ -100,3 +114,7 @@
     width: 100%;
   }
   
+=======
+}
+
+>>>>>>> 1fa0cbb064e4bc702e77bcd4383ee2c348a6f721

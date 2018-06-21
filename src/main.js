@@ -1,9 +1,14 @@
 const url = 'https://api.laboratoria.la/';
+<<<<<<< HEAD
 
 /* Se debe obtener la data de API desde este archivo */
 /*response(respuestade la solicitud de la api)*/
 
 
+=======
+
+
+>>>>>>> 1fa0cbb064e4bc702e77bcd4383ee2c348a6f721
 const data = loadData.getCampuses(url).then(response => {
    
     let campuses = document.getElementById("campus");
@@ -23,6 +28,7 @@ const data = loadData.getCampuses(url).then(response => {
         }
     
     })
+<<<<<<< HEAD
 
     const dataUsers = loadData.getUserLab(url + 'cohorts/lim-2017-09-bc-core-am/users').then(response => {
         console.log(response);
@@ -45,7 +51,50 @@ const data = loadData.getCampuses(url).then(response => {
     })*/
 })    
 
+=======
 
+    const dataUsers = loadData.getUserLab(url + 'cohorts/lim-2017-09-bc-core-am/users').then(response => {
+        console.log(response);
+        let Users = document.getElementById("alumnas");
+        console.log(Users);
+         for (let item in response) {
+           Users.innerHTML += '<a class="dropdown-item "onclick="' +getAlumnas(response[item].id) + '" href="#">' + response[item].name + '</a';
+        }
+    
+    })
+>>>>>>> 1fa0cbb064e4bc702e77bcd4383ee2c348a6f721
+
+    /*const dataUsers = loadData.getProgress(url + 'progress').then(response => {
+        console.log(response);
+        let Users = document.getElementById("alumnas");
+        console.log(Users);
+         for (let item in response) {
+           Users.innerHTML += '<a class="dropdown-item "onclick="' +getAlumnas(response[item].id) + '" href="#">' + response[item].name + '</a';
+        }
+    
+    })*/
+})    
+
+function getCohortsByIid(id){
+    console.log(id);
+    loadData.getCohortsByIid(url + 'cohorts' + 'campus='+id).then(response => {
+        console.log(response);
+        let cohort = document.getElementById("cohort");
+        console.log(cohort);
+        cohort.innerHTML='';
+        for (let item in response) {
+            cohort.innerHTML += '<a class="dropdown-item dropdown-toggle" onmouseover="+getAlumnas(\''+response[item].id+'\');" href="#">'+response[item].id+'</a>';
+        }
+    })
+
+<<<<<<< HEAD
+}
+
+function getAlumnas(id){
+    console.log(id);
+}
+
+=======
 
 function getCohortsByIid(id){
     console.log(id);
@@ -65,6 +114,7 @@ function getAlumnas(id){
     console.log(id);
 }
 
+>>>>>>> 1fa0cbb064e4bc702e77bcd4383ee2c348a6f721
 function getUser(id){
     console.log(id);
 }
