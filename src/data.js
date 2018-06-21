@@ -1,72 +1,85 @@
-function cargarDatosLima(){
-    const url = "../data/cohorts.json"
-    console.log(url)
-    fetch(url).then(  //Then recibe una función llamada cuando recibimos una respuesta. Entrega ''promesas''
-        (response)=>{
-            console.log(response);
-            if(response.ok){
-                return response.json();
-            }
-        }
-    ).then( //Cuando la promesa se cumple.    Aquí anidamos más promesas
-        (responseJson)=>{
-            const datosLimaReceptor = document.getElementById("cargaDatosLima");
-            for(let limaIndex=0; limaIndex < responseJson.length; limaIndex++){
-                const limaDatos = document.createElement(''); //Aquí "almaceno" las imágenes
-                limaDatos.src = responseJson[limaIndex];
-                datosLimaReceptor.appendChild(limaDatos);
-            }
-        }
-    ).catch( //Cuando no se cumple
-        (error)=>{
-            console.log("Petición falló, no tenemos gatitos por hoy");
-        }
-    ); 
-}
-
-    /*Promise.all([   //Ejecuta todas las llamadas de manera paralela
-        fetch(url1),
-        fetch(url2),
-        fetch(url3)
-    ]).then(
-        (responses)=>{   //Responde a todas las promesas
-            return Promise.all(responses.map((response)=>{
-                return response.json();
-            }));
-        }
-    ).then((responseJsons)=>{ //Arreglo de respuestas en json
-         //
-         // Código que ocupa los jsons...
-         //
-    }).catch(
-        (error)=>{ // Al menos una llamada falló
-        }
-    );*/
-
-window.loadData = {
-    getCampuses: (url) => {
+   window.loadData = {
+    getCampuses: (url) => { /*obtener los paises en los que se encuentra Laboratoria*/
         let options = {
-            method: 'GET',
-            headers: {
+            method: 'GET',//método GET envía los datos usando la URL
+            headers: {  //Añade un nuevo valor en un encabezado existente dentro de un Headersobjeto o agrega el encabezado si aún no existe.
+
                 "Accept": "application/json"
             },
-            // mode: 'cors'
+    
         };
 
-         return fetch(url, options)
+        return fetch(url, options) //devuelve la promesa sea exitosa o no
          .then(response => {
-            if (response.ok) {
+            if (response.ok) { //si todo anda bien deberia devolver un 200
               return response.json()
             }
-            return Promise.reject(Error('error'))
-          })
+            return Promise.reject(Error('error'))//devuelve un Promiseobjeto que se rechaza con la razón dada.
+        })
          
         .catch(error => {
             return Promise.reject(Error(error.message))
         });
 
     }, 
-    getCohortsByIid: (id) =>{
-        console.log(id);
-    }
+
+  getCohortsByIid: (url, data) => { //obtener la data de la api cohorts 
+        let options = {
+            method: 'GET',//método GET envía los datos usando la URL
+            headers: {  //Añade un nuevo valor en un encabezado existente dentro de un Headersobjeto o agrega el encabezado si aún no existe.
+
+                "Accept": "application/json"
+            },
+            data: data
+        };
+        
+         return fetch(url, options) //devuelve la promesa sea exitosa o no
+         .then(response => {
+            if (response.ok) { //si todo anda bien deberia devolver un 200
+              return response.json()
+            }
+            return Promise.reject(Error('error'))//devuelve un Promiseobjeto que se rechaza con la razón dada.
+          })
+         
+        .catch(error => {
+            return Promise.reject(Error(error.message))
+        });
+
+    },
+
+    getUserLab: (url) =>{ //obtener la data de la api cohorts 
+        let options = {
+            method: "GET",
+            headers: {  //Añade un nuevo valor en un encabezado existente dentro de un Headersobjeto o agrega el encabezado si aún no existe.
+
+                "Accept": "application/json"
+            },
+    
+        };
+
+    getProgress: (url) =>{ //obtener la data de la api cohorts 
+            let options = {
+                method: "GET",
+                headers: {  //Añade un nuevo valor en un encabezado existente dentro de un Headersobjeto o agrega el encabezado si aún no existe.
+    
+                    "Accept": "application/json"
+                },
+        
+            };
+    
+    
+
+         return fetch(url, options) //devuelve la promesa sea exitosa o no
+         .then(response => {
+            if (response.ok) { //si todo anda bien deberia devolver un 200
+              return response.json()
+            }
+            return Promise.reject(Error('error'))//devuelve un Promiseobjeto que se rechaza con la razón dada.
+          })
+         
+        .catch(error => {
+            return Promise.reject(Error(error.message))
+        });
+
+    },
 }
