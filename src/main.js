@@ -17,6 +17,9 @@ Promise.all([
     let computeUsersStats = window.loadData.computeUsersStats(users, progress, Object.keys(cohorts[1].coursesIndex));
 
     let usersOrder = window.loadData.sortUsers(computeUsersStats, 'name', 'DESC');
+
+    let filterUser = window.loadData.filterUsers(computeUsersStats,"zaida");
+    console.log(filterUser);
 }).catch(
     (error) => {
         alert("Error de Carga" + error);
