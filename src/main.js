@@ -1,112 +1,28 @@
-const url = 'https://api.laboratoria.la/';
+Promise.all([
+    fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json"),
+    fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json"),
+    fetch("../data/cohorts.json")
+]).then(
+    (responses) => { // responde a todas las promesas
+        return Promise.all(responses.map((response) => {
+            return response.json();
+        }));
 
-
-const data = loadData.getCampuses(url).then(response => {
-   
-    let campuses = document.getElementById("campus");
-   
-    campuses.innerHTML = '';
-    for (let item in response) {
-        //let etiqueta = document.createElement('a');
-        campuses.innerHTML += '<a class="dropdown-item" onmouseover="+getCohortsByIid(\''+response[item]+'\');" href="#">'+response[item].name+'</a>';
     }
+).then((responseJsons) => {
+    console.log(responseJsons);
+    let users = responseJsons[0];
+    let progress = responseJsons[1];
+    let cohorts = responseJsons[2];
+    let computeUsersStats = window.loadData.computeUsersStats(users, progress, Object.keys(cohorts[1].coursesIndex));
 
-    const dataCoh = loadData.getCohortsByIid(url + 'cohorts').then(response => {
-        console.log(response);
-        let cohorts = document.getElementById("cohort");
-        console.log(cohorts);
-         for (let item in response) {
-           cohorts.innerHTML += '<a class="dropdown-item "onclick="' + getAlumnas(response[item].id) + '" href="#">' + response[item].name + '</a';
-        }
-    
-    })
+    let usersOrder = window.loadData.sortUsers(computeUsersStats, 'name', 'DESC');
 
-    const dataUsers = loadData.getUserLab(url + 'cohorts/lim-2017-09-bc-core-am/users').then(response => {
-        console.log(response);
-        let Users = document.getElementById("alumnas");
-        console.log(Users);
-         for (let item in response) {
-           Users.innerHTML += '<a class="dropdown-item "onclick="' +getAlumnas(response[item].id) + '" href="#">' + response[item].name + '</a';
-        }
-    
-    })
-
-    /*const dataUsers = loadData.getProgress(url + 'progress').then(response => {
-        console.log(response);
-        let Users = document.getElementById("alumnas");
-        console.log(Users);
-         for (let item in response) {
-           Users.innerHTML += '<a class="dropdown-item "onclick="' +getAlumnas(response[item].id) + '" href="#">' + response[item].name + '</a';
-        }
-    
-    })*/
-})    
-
-function getCohortsByIid(id){
-    console.log(id);
-    loadData.getCohortsByIid(url + 'cohorts' + 'campus='+id).then(response => {
-        console.log(response);
-        let cohort = document.getElementById("cohort");
-        console.log(cohort);
-        cohort.innerHTML='';
-        for (let item in response) {
-            cohort.innerHTML += '<a class="dropdown-item dropdown-toggle" onmouseover="+getAlumnas(\''+response[item].id+'\');" href="#">'+response[item].id+'</a>';
-        }
-    })
-
-
-function getCohortsByIid(id){
-    console.log(id);
-    loadData.getCohortsByIid(url + 'cohorts' + 'campus='+id).then(response => {
-        console.log(response);
-        let cohort = document.getElementById("cohort");
-        console.log(cohort);
-        cohort.innerHTML='';
-        /* cohort.forEach(elemento =>*/
-        for (let item in response) {
-            cohort.innerHTML += '<a class="dropdown-item dropdown-toggle" onmouseover="+getAlumnas(\''+response[item].id+'\');" href="#">'+response[item].id+'</a>';
-        }
-    })
-
-}
-
-function getAlumnas(id){
-    console.log(id);
-}
-
-function getUser(id){
-    console.log(id);
-}
-}
-/*function loadAllData(url){
-
-    // Concadena las url para enviar a la api 
-
-    url1= url+'/cohorts';
-    url2= url+'/progress';
-    url3= url+'/cohorts';
-
-
-    Promise.all([   //Ejecuta todas las llamadas de manera paralela
-        fetch(url1),
-        fetch(url2),
-        fetch(url3)
-    ]).then(
-        (responses)=>{   //Responde a todas las promesas
-            return Promise.all(responses.map((response)=>{
-                return response.json();
-            }));
-        }
-    ).then((responseJsons)=>{ //Arreglo de respuestas en json
-         //
-         // Código que ocupa los jsons...
-         //
-    }).catch(
-        (error)=>{ // Al menos una llamada falló
-        }
-    );
-    
-   
-} */
-
-    /**/
+    let filterUser = window.loadData.filterUsers(computeUsersStats,"zaida");
+    console.log(filterUser);
+}).catch(
+    (error) => {
+        alert("Error de Carga" + error);
+        console.log(error);
+    }
+);

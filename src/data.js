@@ -1,85 +1,109 @@
+
+
 window.loadData = {
-    getCampuses: (url) => { /*obtener los paises en los que se encuentra Laboratoria*/
-        let options = {
-            method: 'GET',//método GET envía los datos usando la URL
-            headers: {  //Añade un nuevo valor en un encabezado existente dentro de un Headersobjeto o agrega el encabezado si aún no existe.
+    computeUsersStats: (users, progress, courses) => {
+        newUsers = [];
+        users.forEach((userValue) => {
+            if (userValue.role === 'student') {
+                let tempProgess = progress[userValue.id];
 
-                "Accept": "application/json"
-            },
-    
-        };
+                let percent = readC = readT = quizC = quizT = practiceC = practiceT = scoreSum = 0;
+                courses.forEach((coursesValue) => {
 
-        return fetch(url, options) //devuelve la promesa sea exitosa o no
-         .then(response => {
-            if (response.ok) { //si todo anda bien deberia devolver un 200
-              return response.json()
+                    // Coinciden un tempProgress con un courses
+                    if (typeof tempProgess[coursesValue] !== 'undefined') {
+                        percent = tempProgess[coursesValue].percent;
+                        // convierte en arraglo un objecto
+                        let tempUnit = Object.values(tempProgess[coursesValue].units);
+
+                        for (let itemUnit in tempUnit) {
+                            tempPart = Object.values(tempUnit[itemUnit].parts);
+                            for (let itemPart in tempPart) {
+                                switch (tempPart[itemPart].type) {
+                                    case 'read':
+                                        readT += 1;
+                                        if (tempPart[itemPart].completed === 1)
+                                            readC += 1;
+                                        break;
+                                    case 'quiz':
+                                        quizT += 1;
+                                        if (tempPart[itemPart].completed === 1) {
+                                            quizC += 1;
+                                            scoreSum += tempPart[itemPart].score;
+                                        }
+                                        break;
+                                    case 'practice':
+                                        practiceT += 1;
+                                        if (tempPart[itemPart].completed === 1)
+                                            practiceC += 1;
+                                        break;
+                                }
+
+                            }
+                        }
+                        let stats = new Object();
+                        stats.percent = percent;
+                        stats.exercises = {
+                            total: practiceT,
+                            completed: practiceC,
+                            percent: Math.round((practiceC / practiceT) * 100)
+                        };
+                        stats.reads = {
+                            total: readT,
+                            completed: readC,
+                            percent: Math.round((readC / readT) * 100)
+                        };
+                        stats.quizzes = {
+                            total: quizT,
+                            completed: quizC,
+                            percent: Math.round((quizC / quizT) * 100),
+                            scoreSum: scoreSum,
+                            scoreAvg: Math.round(scoreSum / quizC)
+                        }
+
+                        userValue.stats = stats
+                        newUsers.push(userValue);
+
+                    }
+
+                });
             }
-            return Promise.reject(Error('error'))//devuelve un Promiseobjeto que se rechaza con la razón dada.
-        })
-         
-        .catch(error => {
-            return Promise.reject(Error(error.message))
+
         });
+        return newUsers;
+    },
+    sortUsers: (users, orderBy, orderDirection) => {
+        if (orderDirection === 'ASC') {
+            users.sort(
+                (a, b) => {
+                    var sortOrder = 1;
+                    var result = (a[orderBy] < b[orderBy]) ? -1 : (a[orderBy] > b[orderBy]) ? 1 : 0;
+                    return result * sortOrder;
+                }
+            )
 
-    }, 
 
-  getCohortsByIid: (url, data) => { //obtener la data de la api cohorts 
-        let options = {
-            method: 'GET',//método GET envía los datos usando la URL
-            headers: {  //Añade un nuevo valor en un encabezado existente dentro de un Headersobjeto o agrega el encabezado si aún no existe.
+            console.log('ASC', users);
+        } else if (orderDirection === 'DESC') {
 
-                "Accept": "application/json"
-            },
-            data: data
-        };
-        
-         return fetch(url, options) //devuelve la promesa sea exitosa o no
-         .then(response => {
-            if (response.ok) { //si todo anda bien deberia devolver un 200
-              return response.json()
-            }
-            return Promise.reject(Error('error'))//devuelve un Promiseobjeto que se rechaza con la razón dada.
-          })
-         
-        .catch(error => {
-            return Promise.reject(Error(error.message))
-        });
+            users.sort(
+                (a, b) => {
+                    var sortOrder = 1;
+                    var result = (a[orderBy] > b[orderBy]) ? -1 : (a[orderBy] < b[orderBy]) ? 1 : 0;
+                    return result * sortOrder;
+                }
+            )
+            console.log('DESC', users);
+        }
 
     },
-
-    getUserLab: (url) =>{ //obtener la data de la api cohorts 
-        let options = {
-            method: "GET",
-            headers: {  //Añade un nuevo valor en un encabezado existente dentro de un Headersobjeto o agrega el encabezado si aún no existe.
-
-                "Accept": "application/json"
-            },
-    
-        };
-
-    /*getProgress: (url) =>{ //obtener la data de la api cohorts 
-            let options = {
-                method: "GET",
-                headers: {  //Añade un nuevo valor en un encabezado existente dentro de un Headersobjeto o agrega el encabezado si aún no existe.
-    
-                    "Accept": "application/json"
-                },
-        
-            };*/
-    
-    
-
-         return fetch(url, options) //devuelve la promesa sea exitosa o no
-         .then(response => {
-            if (response.ok) { //si todo anda bien deberia devolver un 200
-              return response.json()
-            }
-            return Promise.reject(Error('error'))//devuelve un Promiseobjeto que se rechaza con la razón dada.
-          })
-         
-        .catch(error => {
-            return Promise.reject(Error(error.message))
-        });
+    filterUsers(users, search){
+        return users.filter( (a) => {return a.name === search}  );
 
     },
+    
+    processCohortData: (options) => {
+
+
+    }
 }
