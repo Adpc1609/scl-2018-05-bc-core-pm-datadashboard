@@ -29,21 +29,15 @@ Para una completa definición del producto entrevistamos a Valentina smith, Tran
 
 Aqui podrás ver la interfaz de usuario de nuestro producto con los colores de la empresa.
 
-[click aquí](https://www.figma.com/file/OvLG7ZUZhXv4AQDMQFk2rRm2/DASHBOARD-LABORATORIA)
+<img src="img/ProtDashboard1.png"  height="400" alt="D1"/>
+<img src="img/ProtDashboard2.png"  height="400" alt="D2"/>
+<img src="img/ProtDashboard3.png"  height="400" alt="D3"/>
+<img src="img/ProtDashboard4.png"  height="400" alt="D4"/>
 
-[click aquí](https://www.figma.com/file/OvLG7ZUZhXv4AQDMQFk2rRm2/DASHBOARD-LABORATORIA?node-id=14%3A26)
+Aqui verás la interfaz en version Mobile.
 
-[click aquí](https://www.figma.com/file/OvLG7ZUZhXv4AQDMQFk2rRm2/DASHBOARD-LABORATORIA?node-id=0%3A79)
-
-[click aquí](https://www.figma.com/file/OvLG7ZUZhXv4AQDMQFk2rRm2/DASHBOARD-LABORATORIA?node-id=0%3A125)
-
-[click aquí](https://www.figma.com/file/OvLG7ZUZhXv4AQDMQFk2rRm2/DASHBOARD-LABORATORIA?node-id=28%3A20)
-
-[click aqui](https://www.figma.com/file/OvLG7ZUZhXv4AQDMQFk2rRm2/DASHBOARD-LABORATORIA?node-id=29%3A216)
-
-[click aquí](https://www.figma.com/file/OvLG7ZUZhXv4AQDMQFk2rRm2/DASHBOARD-LABORATORIA?node-id=20%3A118)
-
-[click aqui](https://www.figma.com/file/OvLG7ZUZhXv4AQDMQFk2rRm2/DASHBOARD-LABORATORIA?node-id=29%3A42)
+<img src="img/mobileDashboard1.png"  height="400" alt="DM1"/>
+<img src="img/mobileDashboard2.png"  height="400" alt="DM2"/>
 
 
 
