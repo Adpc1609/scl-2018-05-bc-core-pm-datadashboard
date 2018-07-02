@@ -6,13 +6,36 @@
 
 Nuestro equipo pensó que era necesario y muy práctico realizar un Data Dashboard para facilitarle a nuestros usuarios el trabajo que ejercen día a día.
 Para una completa definición del producto entrevistamos a Valentina smith, Traning Manager de Laboratoria sede Santiago, y pudimos captar lo que relamente necesitaba.
- 
+
+### Entrevista a Valentina Smith (Traning Manager de Laboratoria sede Santiago)
+
+- ¿Cuál es su objetivo al tener un Data Dashboard?
+
+    Poder tomar decisiones en base al progreso de las alumnas.
+
+- ¿Qué datos relevantes quiere que se muestren en la primera interfaz?
+
+    En lo posible el porcentaje de progreso de todas las sedes de Laboratoria para poder comparar.
+
+- ¿Cuál es la prioridad en el campo de búsqueda?
+
+    Alumna.
+
+- ¿Considera necesario logearse?
+
+    si.
+
+- ¿Quiénes serán los usuarios de Data Dashboard?
+
+    solo Traning Manager de cada sede.
+
+
  #### sus requerimientos fueron los siguientes:
 
  - Visualizar la completitud de cada curso.
  - visualizar la completitud de cada alumna.
- - visualizar el progreso que ha tenido cada alumna en los cursos             impartidos.
-- Ver progreso por cohort y sede.
+ - visualizar el progreso que ha tenido cada alumna en los cursos impartidos.
+ - Ver progreso por cohort y sede.
  - Tener un buscador para alumna.
  - En lo posible gráficos claros.
  - colores de la empresa.
