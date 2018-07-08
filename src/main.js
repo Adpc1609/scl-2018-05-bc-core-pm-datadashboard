@@ -1,3 +1,7 @@
+var cohorts;
+var users;
+var progress;
+var computeUsersStats;
 Promise.all([
     fetch("../data/cohorts/lim-2018-03-pre-core-pw/users.json"),
     fetch("../data/cohorts/lim-2018-03-pre-core-pw/progress.json"),
@@ -10,19 +14,23 @@ Promise.all([
 
     }
 ).then((responseJsons) => {
-    console.log(responseJsons);
-    let users = responseJsons[0];
-    let progress = responseJsons[1];
-    let cohorts = responseJsons[2];
-    let computeUsersStats = window.loadData.computeUsersStats(users, progress, Object.keys(cohorts[1].coursesIndex));
+//    console.log(responseJsons);
+    users = responseJsons[0];
+    progress = responseJsons[1];
+    cohorts = responseJsons[2];
+    computeUsersStats = window.loadData.computeUsersStats(users, progress, Object.keys(cohorts[1].coursesIndex));
 
     let usersOrder = window.loadData.sortUsers(computeUsersStats, 'name', 'DESC');
 
     let filterUser = window.loadData.filterUsers(computeUsersStats,"zaida");
-    console.log(filterUser);
+
+    window.loadData.processCohortData(cohorts); 
+//    console.log(filterUser);
 }).catch(
     (error) => {
         alert("Error de Carga" + error);
         console.log(error);
     }
 );
+
+

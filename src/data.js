@@ -1,5 +1,3 @@
-
-
 window.loadData = {
     computeUsersStats: (users, progress, courses) => {
         newUsers = [];
@@ -83,7 +81,7 @@ window.loadData = {
             )
 
 
-            console.log('ASC', users);
+ //           console.log('ASC', users);
         } else if (orderDirection === 'DESC') {
 
             users.sort(
@@ -93,7 +91,7 @@ window.loadData = {
                     return result * sortOrder;
                 }
             )
-            console.log('DESC', users);
+//            console.log('DESC', users);
         }
 
     },
@@ -101,9 +99,30 @@ window.loadData = {
         return users.filter( (a) => {return a.name === search}  );
 
     },
-    
-    processCohortData: (options) => {
-
-
+    processCohortData(option){
+        option.forEach(function(element){
+            let listOption = document.createElement("option");
+            listOption.text = element.id;
+            listOption.value = element.id;
+            document.getElementById("cohortsList").appendChild(listOption);
+        });
     }
+}
+function getStudents(){
+    while(document.getElementById("tableContainer").firstChild){
+        document.getElementById("tableContainer").removeChild(document.getElementById("tableContainer").firstChild);
+    }
+    let searchText = document.getElementById("cohortsList").value;
+
+    computeUsersStats.forEach(function (element){
+        if(element.signupCohort == searchText){
+            let rowTable = document.createElement("div");
+            rowTable.className = "row_table";
+            let cellTable = document.createElement("div");
+            cellTable.className = "cell_table";
+            cellTable.textContent = element.name;
+            rowTable.appendChild(cellTable);    
+            document.getElementById("tableContainer").appendChild(rowTable);
+        }
+    });
 }
