@@ -18,14 +18,19 @@ Promise.all([
     users = responseJsons[0];
     progress = responseJsons[1];
     cohorts = responseJsons[2];
-    computeUsersStats = window.loadData.computeUsersStats(users, progress, Object.keys(cohorts[1].coursesIndex));
+    
+    let options = new Object();
+    
+    options.cohort = cohorts;
+    options.cohortData = { users: users, progress: progress};
+    options.orderBy = "name";
+    options.orderDirection = "ASC";
+    options.search = 'Vanessa';
 
-    let usersOrder = window.loadData.sortUsers(computeUsersStats, 'name', 'DESC');
 
-    let filterUser = window.loadData.filterUsers(computeUsersStats,"zaida");
 
-    window.loadData.processCohortData(cohorts); 
-//    console.log(filterUser);
+   let result = window.loadData.processCohortData(options); 
+    console.log(result);
 }).catch(
     (error) => {
         alert("Error de Carga" + error);

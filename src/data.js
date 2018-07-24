@@ -81,7 +81,7 @@ window.loadData = {
             )
 
 
- //           console.log('ASC', users);
+           console.log('ASC', users);
         } else if (orderDirection === 'DESC') {
 
             users.sort(
@@ -91,23 +91,30 @@ window.loadData = {
                     return result * sortOrder;
                 }
             )
-//            console.log('DESC', users);
+           console.log('DESC', users);
         }
-
+        return users;
     },
     filterUsers(users, search){
         return users.filter( (a) => {return a.name === search}  );
 
     },
-    processCohortData(option){
-        option.forEach(function(element){
-            let listOption = document.createElement("option");
-            listOption.text = element.id;
-            listOption.value = element.id;
-            document.getElementById("cohortsList").appendChild(listOption);
-        });
+    processCohortData(options){
+        let response=[];
+
+        let computeUsersStats = window.loadData.computeUsersStats(options.cohortData.users, options.cohortData.progress, Object.keys(options.cohort[1].coursesIndex));
+
+        response = window.loadData.sortUsers(computeUsersStats, options.orderBy, options.orderDirection);
+
+        if(options.search!==null)
+            response = window.loadData.filterUsers(computeUsersStats,options.search);
+        
+    return response;
+
+        
     }
 }
+/*
 function getStudents(){
     while(document.getElementById("tableContainer").firstChild){
         document.getElementById("tableContainer").removeChild(document.getElementById("tableContainer").firstChild);
@@ -125,4 +132,4 @@ function getStudents(){
             document.getElementById("tableContainer").appendChild(rowTable);
         }
     });
-}
+} */
